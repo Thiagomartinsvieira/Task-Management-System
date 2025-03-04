@@ -4,65 +4,73 @@ import TaskForm from "./TaskForm";
 import TaskList from "./TaskList";
 import { Toaster } from "./ui/toaster";
 import { useToast } from "./ui/use-toast";
-
-interface Task {
-  id: string;
-  text: string;
-  completed: boolean;
-}
+import tasksApi from "../api/tasks";
+import { Task } from "../lib/db";
 
 const Home: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([
-    { id: "task-1", text: "Complete project documentation", completed: false },
-    { id: "task-2", text: "Review pull requests", completed: true },
-    { id: "task-3", text: "Fix UI bugs in dashboard", completed: false },
-    { id: "task-4", text: "Prepare for team meeting", completed: false },
-    { id: "task-5", text: "Update dependencies", completed: true },
-  ]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
+
+  // Load tasks on component mount
+  useEffect(() => {
+    loadTasks();
+  }, []);
+
+  const loadTasks = async () => {
+    setIsLoading(true);
+    try {
+      const allTasks = await tasksApi.getAllTasks();
+      setTasks(allTasks);
+    } catch (error) {
+      showErrorToast("Failed to load tasks. Please refresh the page.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const completedTasks = tasks.filter((task) => task.completed).length;
 
-  const handleAddTask = (text: string) => {
+  const handleAddTask = async (text: string) => {
     setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      const newTask: Task = {
-        id: `task-${Date.now()}`,
-        text,
-        completed: false,
-      };
+    try {
+      const newTask = await tasksApi.createTask(text);
       setTasks([...tasks, newTask]);
+    } catch (error) {
+      showErrorToast("Failed to add task. Please try again.");
+    } finally {
       setIsLoading(false);
-    }, 500);
+    }
   };
 
-  const handleToggleTask = (id: string) => {
+  const handleToggleTask = async (id: string) => {
     setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      setTasks(
-        tasks.map((task) =>
-          task.id === id ? { ...task, completed: !task.completed } : task,
-        ),
-      );
-      setIsLoading(false);
-    }, 300);
-  };
-
-  const handleDeleteTask = (id: string) => {
-    setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      try {
-        setTasks(tasks.filter((task) => task.id !== id));
-        setIsLoading(false);
-      } catch (error) {
-        setIsLoading(false);
-        showErrorToast("Failed to delete task. Please try again.");
+    try {
+      const updatedTask = await tasksApi.toggleTaskCompletion(id);
+      if (updatedTask) {
+        setTasks(tasks.map((task) => (task.id === id ? updatedTask : task)));
       }
-    }, 300);
+    } catch (error) {
+      showErrorToast("Failed to update task. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleDeleteTask = async (id: string) => {
+    setIsLoading(true);
+    try {
+      const success = await tasksApi.deleteTask(id);
+      if (success) {
+        setTasks(tasks.filter((task) => task.id !== id));
+      } else {
+        showErrorToast("Task not found or already deleted.");
+      }
+    } catch (error) {
+      showErrorToast("Failed to delete task. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const showErrorToast = (message: string) => {
@@ -89,6 +97,7 @@ const Home: React.FC = () => {
             tasks={tasks}
             onToggleTask={handleToggleTask}
             onDeleteTask={handleDeleteTask}
+            isLoading={isLoading}
           />
         </div>
       </main>
