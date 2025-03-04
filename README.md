@@ -17,7 +17,7 @@
 
 The Task Management System is a responsive web application built with React and TypeScript that allows users to create, view, edit, and delete tasks with a simple and intuitive interface. The application uses client-side storage to persist task data between sessions.
 
-![main image about to-do project](public/imagens/main.webp)
+![Task Management System Overview](public/images/main.webp)
 
 ### Key Features
 
@@ -90,7 +90,7 @@ interface TaskHeaderProps {
 }
 ```
 
-![TaskHeader Component - Insert screenshot of the header here]
+![Task Management Header](public/images/header.webp)
 
 ### TaskForm Component
 
@@ -103,7 +103,7 @@ interface TaskFormProps {
 }
 ```
 
-![TaskForm Component - Insert screenshot of the form here]
+![Task Management form](public/images/form.webp)
 
 ### TaskList Component
 
@@ -118,7 +118,7 @@ interface TaskListProps {
 }
 ```
 
-![TaskList Component - Insert screenshot of the task list here]
+![Task Management List of tasks](public/images/list-of-tasks.webp)
 
 ### TaskItem Component
 
@@ -134,7 +134,7 @@ interface TaskItemProps {
 }
 ```
 
-![TaskItem Component - Insert screenshot of a task item here]
+![Task Management task](public/images/one-item-task.webp)
 
 ### ErrorToast Component
 
@@ -157,8 +157,6 @@ The application follows a unidirectional data flow pattern:
 2. Event handlers call API functions to modify data
 3. API functions update the client-side storage
 4. Updated data flows back to the UI components through state updates
-
-![Data Flow Diagram - Insert data flow diagram here]
 
 ### Task Data Structure
 
@@ -191,7 +189,7 @@ The interface adapts to different screen sizes:
 - **Tablet**: Slightly condensed layout with adjusted margins
 - **Mobile**: Single column layout with optimized touch targets
 
-![Responsive Design - Insert responsive design screenshots here]
+![Task Management task Responsive](public/images/responsive.webp)
 
 ## Client-Side Storage
 
