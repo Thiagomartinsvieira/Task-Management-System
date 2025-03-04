@@ -17,7 +17,7 @@
 
 The Task Management System is a responsive web application built with React and TypeScript that allows users to create, view, edit, and delete tasks with a simple and intuitive interface. The application uses client-side storage to persist task data between sessions.
 
-![Task Management System Overview - Insert screenshot of the main application interface here]
+![main image about to-do project](public/imagens/main.webp)
 
 ### Key Features
 
