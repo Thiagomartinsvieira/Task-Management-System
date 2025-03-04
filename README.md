@@ -32,8 +32,6 @@ The Task Management System is a responsive web application built with React and 
 
 The Task Management System follows a component-based architecture using React. The application is structured to separate concerns between UI components, data management, and API interactions.
 
-![System Architecture Diagram - Insert architecture diagram here]
-
 ### Technology Stack
 
 - **Frontend Framework**: React with TypeScript
@@ -79,8 +77,6 @@ const Home: React.FC = () => {
   );
 };
 ```
-
-![Home Component Structure - Insert component hierarchy diagram here]
 
 ### TaskHeader Component
 
@@ -153,8 +149,6 @@ interface ErrorToastProps {
 }
 ```
 
-![ErrorToast Component - Insert screenshot of an error toast here]
-
 ## Data Flow
 
 The application follows a unidirectional data flow pattern:
@@ -188,8 +182,6 @@ The application layout consists of:
 1. A header section with the application title and task statistics
 2. A task form section for adding new tasks
 3. A task list section displaying all tasks
-
-![UI Layout - Insert annotated UI layout diagram here]
 
 ### Responsive Design
 
@@ -225,8 +217,6 @@ export const taskDb = {
   toggleComplete: (id: string): Task | undefined => { /* ... */ },
 };
 ```
-
-![Storage Architecture - Insert storage architecture diagram here]
 
 ### Custom Hook
 
@@ -297,8 +287,6 @@ Deletes a task by ID.
 async function deleteTask(id: string): Promise<boolean>
 ```
 
-![API Flow - Insert API flow diagram here]
-
 ## Installation Guide
 
 Follow these steps to set up the Task Management System locally:
@@ -313,7 +301,7 @@ Follow these steps to set up the Task Management System locally:
 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/task-management-system.git
+git clone https://github.com/Thiagomartinsvieira/Task-Management-System.git
 cd task-management-system
 ```
 
@@ -334,8 +322,6 @@ yarn dev
 ```
 
 4. Open your browser and navigate to `http://localhost:5173`
-
-![Installation Process - Insert installation process screenshot here]
 
 ## Development Guide
 
@@ -367,8 +353,6 @@ yarn dev
 ├── tsconfig.json
 └── vite.config.ts
 ```
-
-![Project Structure - Insert project structure diagram here]
 
 ### Adding New Features
 
@@ -424,8 +408,6 @@ To add a new feature to the Task Management System:
 - Verify that the Toaster component is included in the component tree
 - Check that the `showErrorToast` function is being called when errors occur
 
-![Troubleshooting Guide - Insert troubleshooting flowchart here]
-
 ---
 
 ## Future Enhancements
@@ -438,8 +420,6 @@ To add a new feature to the Task Management System:
 - **Offline Support**: Add offline capabilities with service workers
 - **Dark Mode**: Implement a dark mode theme
 - **Task Filtering**: Add the ability to filter tasks by status, category, etc.
-
-![Future Roadmap - Insert roadmap diagram here]
 
 ---
 
