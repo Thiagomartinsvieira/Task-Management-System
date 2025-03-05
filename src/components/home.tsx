@@ -4,8 +4,8 @@ import TaskForm from "./TaskForm";
 import TaskList from "./TaskList";
 import { Toaster } from "./ui/toaster";
 import { useToast } from "./ui/use-toast";
-import tasksApi from "../api/tasks";
-import { Task } from "../lib/db";
+import tasksApi from "../api/tasks-browser";
+import { Task } from "../lib/db-browser";
 
 const Home: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);

@@ -13,11 +13,11 @@ interface TaskListProps {
 
 const TaskList: React.FC<TaskListProps> = ({
   tasks = [
-    { id: "task-1", text: "Complete project documentation", completed: false },
-    { id: "task-2", text: "Review pull requests", completed: true },
-    { id: "task-3", text: "Fix UI bugs in dashboard", completed: false },
-    { id: "task-4", text: "Prepare for team meeting", completed: false },
-    { id: "task-5", text: "Update dependencies", completed: true },
+    { id: "task-1", title: "Complete project documentation", completed: false },
+    { id: "task-2", title: "Review pull requests", completed: true },
+    { id: "task-3", title: "Fix UI bugs in dashboard", completed: false },
+    { id: "task-4", title: "Prepare for team meeting", completed: false },
+    { id: "task-5", title: "Update dependencies", completed: true },
   ],
   onToggleTask = () => {},
   onDeleteTask = () => {},
@@ -44,6 +44,7 @@ const TaskList: React.FC<TaskListProps> = ({
             <TaskItem
               key={task.id}
               id={task.id}
+              title={task.title}
               text={task.text}
               completed={task.completed}
               onToggle={onToggleTask}

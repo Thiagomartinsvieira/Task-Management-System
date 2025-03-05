@@ -6,6 +6,7 @@ import { Trash2 } from "lucide-react";
 interface TaskItemProps {
   id?: string;
   text?: string;
+  title?: string; // Added for compatibility with new db schema
   completed?: boolean;
   onToggle?: (id: string) => void;
   onDelete?: (id: string) => void;
@@ -13,11 +14,14 @@ interface TaskItemProps {
 
 const TaskItem: React.FC<TaskItemProps> = ({
   id = "task-1",
-  text = "Complete the task management system",
+  text,
+  title = "Complete the task management system",
   completed = false,
   onToggle = () => {},
   onDelete = () => {},
 }) => {
+  // Use text if provided (for backward compatibility), otherwise use title
+  const displayText = text || title;
   const handleToggle = () => {
     onToggle(id);
   };
@@ -38,7 +42,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
           htmlFor={`task-${id}`}
           className={`text-sm font-medium ${completed ? "text-gray-400 line-through" : "text-gray-700"}`}
         >
-          {text}
+          {displayText}
         </label>
       </div>
       <Button
